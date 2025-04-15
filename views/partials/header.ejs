@@ -1,0 +1,107 @@
+<!-- partials\header.ejs --> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Registration System</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        // Extend Tailwind with dark mode
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#3b82f6',
+                            dark: '#2563eb'
+                        },
+                        secondary:{
+                            
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 dark:text-white">
+    <div class="flex">
+        <!-- Sidebar starts here -->
+      <!-- Keep everything the same until the sidebar section -->
+
+<aside id="sidebar" class="fixed top-0 left-0 z-40 h-screen transition-all duration-300 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 w-64">
+    <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+        <span class="text-lg font-bold whitespace-nowrap overflow-hidden sidebar-text">Course System</span>
+        <button id="toggle-sidebar" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded p-1">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+    <nav class="py-4">
+        <% if (typeof session !== 'undefined' && session.studentId) { %>
+            <a href="/student/dashboard" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 <%= path === '/student/dashboard' ? 'bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-300' : '' %>">
+                <i class="fas fa-home mr-3"></i>
+                <span class="sidebar-text">Dashboard</span>
+            </a>
+            <!-- Add sidebar-text class to all menu items -->
+            <a href="/student/courses" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 <%= path === '/student/courses' ? 'bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-300' : '' %>">
+                <i class="fas fa-book mr-3"></i>
+                <span class="sidebar-text">Browse Courses</span>
+            </a>
+            <a href="/student/calendar" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 <%= path === '/student/calendar' ? 'bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-300' : '' %>">
+                <i class="fas fa-calendar-alt mr-3"></i>
+                <span class="sidebar-text">My Schedule</span>
+            </a>
+        <% } else if (typeof session !== 'undefined' && session.adminId) { %>
+            <a href="/admin/dashboard" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 <%= path === '/admin/dashboard' ? 'bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-300' : '' %>">
+                <i class="fas fa-home mr-3"></i>
+                <span class="sidebar-text">Dashboard</span>
+            </a>
+            <a href="/admin/courses" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 <%= path === '/admin/courses' ? 'bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-300' : '' %>">
+                <i class="fas fa-book mr-3"></i>
+                <span class="sidebar-text">Manage Courses</span>
+            </a>
+            <a href="/admin/students" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 <%= path === '/admin/students' ? 'bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-300' : '' %>">
+                <i class="fas fa-users mr-3"></i>
+                <span class="sidebar-text">Manage Students</span>
+            </a>
+            <!-- Add Reports link -->
+            <a href="/admin/reports" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 <%= path === '/admin/reports' ? 'bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-300' : '' %>">
+                <i class="fas fa-chart-bar mr-3"></i>
+                <span class="sidebar-text">Reports</span>
+            </a>
+        <% } %>
+        <% if (typeof session !== 'undefined' && (session.studentId || session.adminId)) { %>
+            <a href="/auth/logout" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <i class="fas fa-sign-out-alt mr-3"></i>
+                <span class="sidebar-text">Logout</span>
+            </a>
+        <% } %>
+        <button id="theme-toggle" class="flex items-center w-full px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+            <i class="fas fa-moon mr-3" id="theme-icon"></i>
+            <span class="sidebar-text">Toggle Theme</span>
+        </button>
+    </nav>
+</aside>
+
+<!-- Main content - update the ml-64 class to use a variable width -->
+<main id="main-content" class="ml-64 flex-1 p-4 transition-all duration-300">
+            <!-- Top navbar -->
+            <nav class="bg-blue-600 text-white p-4 rounded-lg mb-4 flex justify-between items-center">
+                <div class="text-lg font-bold">Course Registration System</div>
+                <div class="flex items-center gap-4">
+                    <% if (typeof session !== 'undefined' && (session.studentId || session.adminId)) { %>
+                        <span class="text-sm">
+                            <%= typeof session.studentId !== 'undefined' ? 'Student' : 'Admin' %> Mode
+                        </span>
+                        <button id="mobile-sidebar-toggle" class="md:hidden bg-blue-700 hover:bg-blue-800 p-2 rounded">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    <% } %>
+                </div>
+            </nav>

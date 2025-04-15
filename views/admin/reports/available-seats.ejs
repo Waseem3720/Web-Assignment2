@@ -1,0 +1,15 @@
+<h2>Courses with Available Seats</h2>
+<table>
+  <tr>
+    <th>Course Code</th>
+    <th>Name</th>
+    <th>Available Seats</th>
+  </tr>
+  <% courses.forEach(course => { %>
+    <tr>
+      <td><%= course.courseCode %></td>
+      <td><%= course.name %></td>
+      <td><%= course.seats.available %></td>
+    </tr>
+  <% }) %>
+</table>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Student Management System</title>
+  <!-- Link to TailwindCSS for styling -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css"> <!-- Optional: Custom Stylesheet -->
+  <style>
+    html,
+    body {
+      height: 100%;
+    }
+
+    .content {
+      min-height: 80%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .panel-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      justify-items: center;
+    }
+
+    footer {
+      margin-top: auto;
+      margin-bottom: 3px;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 flex flex-col">
+  <!-- Navigation Bar -->
+  <header class="bg-blue-600 text-white p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="/" class="text-xl font-bold">Student Management System</a>
+      <nav>
+        <a href="/auth/login" class="text-white mx-4 hover:underline">Login</a>
+        <a href="/admin/dashboard" class="text-white mx-4 hover:underline">Admin Dashboard</a>
+        <a href="/student/dashboard" class="text-white mx-4 hover:underline">Student Dashboard</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container mx-auto p-8 content">
+    <h1 class="text-3xl font-bold mb-6 text-center">Welcome to the Student Management System</h1>
+
+    <!-- Welcome Section or Introduction -->
+    <p class="text-lg mb-4 text-center">This system helps manage student registrations, courses, and admin functionalities such as managing courses, student data, and generating reports.</p>
+
+    <!-- Admin & Student Options -->
+    <div class="panel-container">
+      <!-- Admin Section -->
+      <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-xs">
+        <h2 class="text-2xl font-semibold mb-4 text-center">Admin Panel</h2>
+        <p class="text-gray-600 mb-4 text-center">As an admin, you can manage students, courses, and reports.</p>
+        <a href="/admin/dashboard" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 block text-center">Go to Admin Dashboard</a>
+      </div>
+
+      <!-- Student Section -->
+      <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-xs">
+        <h2 class="text-2xl font-semibold mb-4 text-center">Student Dashboard</h2>
+        <p class="text-gray-600 mb-4 text-center">As a student, you can register for courses, view your schedule, and more.</p>
+        <a href="/student/dashboard" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 block text-center">Go to Student Dashboard</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <footer class="bg-gray-800 text-white text-center p-4">
+    <p>&copy; 2025 Student Management System. All rights reserved.</p>
+  </footer>
+
+  <!-- Optional: External Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
+</body>
+
+</html>

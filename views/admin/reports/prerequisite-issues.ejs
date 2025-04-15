@@ -1,0 +1,18 @@
+<h2>Students with Prerequisite Issues</h2>
+<ul>
+  <% students.forEach(student => { %>
+    <li>
+      <strong><%= student.name %></strong> has enrolled in:
+      <ul>
+        <% student.registeredCourses.forEach(course => { %>
+          <% const unmet = course.prerequisites.filter(prereq => 
+              !student.completedCourses.some(c => c._id.equals(prereq))
+          ); %>
+          <% if (unmet.length > 0) { %>
+            <li><%= course.name %> (Missing: <%= unmet.join(', ') %>)</li>
+          <% } %>
+        <% }) %>
+      </ul>
+    </li>
+  <% }) %>
+</ul>

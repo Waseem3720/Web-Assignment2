@@ -1,0 +1,6 @@
+<h2>Students Enrolled in <%= course.name %> (<%= course.courseCode %>)</h2>
+<ul>
+  <% students.forEach(student => { %>
+    <li><%= student.name %> (ID: <%= student._id %>)</li>
+  <% }) %>
+</ul>
